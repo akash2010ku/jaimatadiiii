@@ -11,22 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
+        //
         Schema::create('users', function (Blueprint $table) {
-            $table->uuid();
+            $table->uuid('id')->primary();
             $table->string('name');
             $table->string('email')->unique();
-            $table-> string('password');
-            $table->json('Books Issued');
+            $table->string('password');
+            $table->json('books_issued')->nullable(); // Store issued books in JSON format
             $table->timestamps();
         });
-
-
-
-
-
-
-
-
     }
 
     /**
