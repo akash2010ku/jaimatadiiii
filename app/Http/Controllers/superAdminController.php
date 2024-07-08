@@ -2,23 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Staff;
 use App\Models\User;
 use Illuminate\Http\Request;
 use mysql_xdevapi\Exception;
 
-class UserController extends Controller
+class superAdminController extends Controller
 {
     /**
      * Create a new controller instance.
      *
      * @return \Illuminate\Http\JsonResponse
      */
-
-
-
-
-
-    public function createUser(Request $request)
+    public function createStaff(Request $request)
     {
         try {
             $data = $request->all();
@@ -27,10 +23,10 @@ class UserController extends Controller
             $alreadyExists = User::query()->where('email', $data['email'])->exists();
 
             if (!$alreadyExists) {
-                $userData = User::query()->create($data);
+                $userData = Staff::query()->create($data);
                 return response()->json(['message' => $userData]);
             } else {
-                return response()->json(['message' => "User already exists"], 400);
+                return response()->json(['message' => "staff already exists"], 400);
             }
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
@@ -38,24 +34,22 @@ class UserController extends Controller
     }
 
 
-
-    public function deleteUser(Request $request)
+    public function deleteStaff(Request $request)
     {
         try {
             $data=$request->all();
-            User::query()->where('name',$data['name'])->delete();
-            return response()->json(['message'=>"User Deleted Successfully"]);
+            Staff::query()->where('email',$data['email'])->delete();
+            return response()->json(['message'=>"Staff Deleted Successfully"]);
         }catch(Exception $e){
             return $e;
         }
     }
 
-
-    public function updateUser(Request $request){
+    public function updateStaff(Request $request){
         try {
             $data=$request->all();
             User::query()->where('uuid',$data['uuid'])->update($data);
-            return response()->json(['message'=>"User Updated Successfully"]);
+            return response()->json(['message'=>"staff Updated Successfully"]);
         }catch(Excpection $e){
             return $e;
         }
@@ -63,14 +57,19 @@ class UserController extends Controller
     }
 
 
-    public function userList(Request $request){
+    public function staffList(Request $request){
         try {
             $userList=User::all();
-            return response()->json(['UserList'=>$userList]);
+            return response()->json(['staffList'=>$userList]);
         }catch (Exception $e){
             return $e;
         }
     }
 
-    //
+
+
+
+
+
+
 }

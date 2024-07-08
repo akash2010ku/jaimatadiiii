@@ -22,6 +22,12 @@ $router->get('/', function () use ($router) {
 
 
 $router->post('/admin/createUser',"UserController@createUser");
-$router->post('/admin/userList',"UserController@userList");
-$router->post('/admin/updateUser',"UserController@updateUser");
-$router->post('/admin/deleteUser',"UserController@deleteUser");
+$router->get('/admin/userList',"UserController@userList");
+$router->put('/admin/updateUser',"UserController@updateUser");
+$router->delete('/admin/deleteUser',"UserController@deleteUser");
+
+$router->post('/admin/createBook',"BooksController@createBook");
+$router->get('/admin/bookList',"BooksController@bookList");
+
+
+$router->post('/registration',"RegistrationController@registration");

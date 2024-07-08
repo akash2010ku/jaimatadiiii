@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Lumen\Auth\Authorizable;
 
-class Books extends Model implements AuthenticatableContract, AuthorizableContract
+class Staff extends Model implements AuthenticatableContract, AuthorizableContract
 {
     use Authenticatable, Authorizable, HasFactory;
 
@@ -19,7 +19,7 @@ class Books extends Model implements AuthenticatableContract, AuthorizableContra
      * @var string[]
      */
     protected $fillable = [
-        'title', 'author','genre','issued','user_id'
+        'name', 'email','password'
     ];
 
 
@@ -31,8 +31,9 @@ class Books extends Model implements AuthenticatableContract, AuthorizableContra
      *
      * @var string[]
      */
-    protected $table = 'books';
+    protected $table = 'staff';
     protected $hidden = [
         'password',
     ];
 }
+

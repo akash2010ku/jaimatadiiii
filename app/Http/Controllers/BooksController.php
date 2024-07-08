@@ -19,7 +19,7 @@ class BooksController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function createUser(Request $request)
+    public function createBook(Request $request)
     {
         try {
             $body=$request->all();
@@ -57,7 +57,7 @@ class BooksController extends Controller
         }
         }
 
-        public function BookList(Request $request){
+        public function bookList(Request $request){
             try {
                 $bookList=Books::all();
                 return response()->json(['BookList'=>$bookList]);

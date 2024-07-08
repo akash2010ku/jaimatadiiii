@@ -11,15 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
         Schema::create('books', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->uuid('id')->primary()->default(DB::raw('(UUID())'));
             $table->string('title');
             $table->string('author');
             $table->string('genre');
+            $table->string('Issued Price');
+            $table->string('Selling price');
             $table->boolean('issued')->default(false);
             $table->uuid('user_id')->nullable(); // Foreign key to users table
-            $table->timestamps();
+            $table->timestamps(); // created_at and updated_at
 
             // Define foreign key constraint
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('books');
     }
 };
