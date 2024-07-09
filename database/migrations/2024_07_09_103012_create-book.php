@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('author');
             $table->string('genre');
-            $table->string('Issued Price');
-            $table->string('Selling price');
+            $table->string('IssuedPrice');
+            $table->string('SellingPrice');
             $table->boolean('issued')->default(false);
             $table->uuid('user_id')->nullable(); // Foreign key to users table
             $table->timestamps(); // created_at and updated_at
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('books');
+        //
     }
 };
